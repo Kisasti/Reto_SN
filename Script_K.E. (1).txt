@@ -1,58 +1,111 @@
-RETO FINAL: MAPA DE CAMBIO DE USO DE SUELO DE SIERRA NEVADA
+RETO FINAL: MAPA DE CAMBIO DE USO DE SUELO.
 
-El objetivo del proyecto es ver como ha cambiado el uso de suelo en Sierra Nevada desde un punto estructural, funcional y de servicios ecosist�micos. 
-En este trabajo en concreto se han evaluado estos cambios teniendo en cuenta la antropizaci�n o naturalizaci�n que han sufrido los suelos del entorno de Sierra Nevada.
+El objetivo del proyecto es ver cómo ha cambiado el uso de suelo en las formaciones montañosas de Sierra Nevada y Sierra de Baza, desde un punto estructural, funcional y de servicios ecosistémicos. 
 
-Los datos que se nos proporcinaron:
-	
-	- Shape de Sierra Nevada
+En este trabajo en concreto se han evaluado estos cambios teniendo en cuenta la antropización o naturalización que han sufrido los suelos del entorno de Sierra Nevada y Sierra de Baza.
+
+Los datos que se nos proporcionaron:
+	- Shape de Sierra Nevada y alrededores
 	- Datos de uso de suelo de 1956
 	- Datos de uso de suelo de 1999
 	- Datos de uso de suelo de 2003
 	- Diccionario de los usos de suelo
 
-Primero de todo tuvimos que resolver la integridad entre distintos campos para poder proceder con la ejecuci�n del proyecto. 
+En primer lugar se tuvo que resolver la integridad entre distintos campos para poder proceder con la ejecución del proyecto. 
 
-Una vez que solventamos la integridad  decidimos cuales son los datos que se van a trabajar.
-Se ha decidido trabajar con este rango de tiempo ya que los mayores cambios han sucedido durante este periodo. Adem�s, el rango de tiempo entre el a�o 1999 y 2003 no es muy extenso y creemos que un periodo m�s largo ser� m�s completo.
-As� mismo, queremos comprobar si la incorporaci�n de las figuras de protecci�n de parque natural (1989)y nacional (1999) han influido en el uso de suelos. En el caso de que usasemos los datos del a�o 1999 puede que no se apreciasen los cambios relativos a la instauraci�n de pol�ticas de conservaci�n.
+Una vez que solventamos la integridad  se decidió con cuáles de los datos se iba a proceder a trabajar.
 
-Sabiendo que los datos que usaremos se procede a hacer el an�lisis del cambio de uso del suelo entre el a�o 1956 y 2003.
+Se decidió trabajar con los datos obtenidos entre 1956 y 2003. Se eligió este rango de tiempo ya que los mayores cambios han sucedido durante este periodo. Además, el rango de tiempo entre el año 1999 y 2003 no es muy extenso y creemos que un periodo más largo será más completo.
 
-Se procede a ver qu� pol�gonos de la base de datos han sufrido un cambio de uso desde el a�o 1956 al 2003 
-Para ello se restan  los valores de UC de distintos a�os, se crea una nueva tabla de consulta: "Cambios5603_resta"
+Así mismo, se quiere comprobar si la incorporación de las figuras de protección de Parque Natural (1989) y Nacional (1999) en Sierra Nevada y Parque Natural (1989) Sierra de Baza han influido en el uso del suelo. En el caso de que usáramos los datos del año 1999 podría no apreciarse los cambios que conciernen a la instauración de políticas de conservación.
 
-	#Si el resultado = 0 --> Significa que los valores para los 2 a�os son =, por lo que no ha habido cambio en el uso.
+Sabiendo que los datos que usamos son procedentes a la realización del análisis del cambio de uso del suelo entre el año 1956 y 2003, se procede a ver qué polígonos de la base de datos han sufrido un cambio de uso desde el año 1956 al 2003 
+
+Para ello se realiza una resta de los valores de UC de distintos años, por lo que se crea una nueva tabla de consulta: "Cambios5603_resta"
+	#Si el resultado = 0 --> Significa que los valores para los 2 años son =, por lo que no ha habido cambio en el uso.
 	#Si el resultado NO ES 0 --> Ha habido un cambio en el uso de suelo.
 
 Posteriormente, se crea una nueva tabla de consulta: "Cambios_03_56_Reto"
-Para ello se crea un gradiente de cambio de uso desde el a�o 1956 al 2003. Se crea un rango de valores en la leyenda de usos de cobertura (UC) para evaluar y reflejar el grado de cambio de uso de cobertura en cada pol�gono. 
-Como nuestro objetivo es ver la antropizaci�n o naturalizaci�n que ha sufrido el terreno, se crear� un campo nuevo en la tabla UC que represente el grado de antropizaci�n.
+
+A continuación se crea un gradiente de cambio de uso desde el año 1956 al 2003. Por lo que se crea un rango de valores en la leyenda de usos de cobertura (UC) para evaluar y reflejar el grado de cambio de uso de cobertura en cada polígono. 
+
+Como el objetivo de este trabajo es pone de manifiesto la antropización o naturalización que ha sufrido el área de Sierra Nevada y Sierra de Baza, se creará un campo nuevo en la tabla UC que represente el grado de antropización.
+
 Este nuevo campo se crea de la siguiente forma:
 
-En tabla diccionario de usos de suelo hemos decidido que los ecosistemas que tengan un uso antr�pico ir� de 0 a 4 mientras que los que tengan un uso m�s silvestre-natural ir�n de 5 a 8. Mirar tabla adjunta
-	
-Se crea una nueva consulta donde se relacionan los valores de rango de uso de cobertura con los valores de los c�digos y despu�s con valores de la tabla principal
-Esta consulta se llama naturalizaci�n y aparecen campos con los valores de la naturalizaci�n y descripciones del estado del pol�gono tanto en el a�o 1956 como 2003
+En tabla que se usa como diccionario de usos de suelo, hemos decidido que los ecosistemas que tengan un uso antrópico irá de 0 a 4 mientras que los que tengan un uso más silvestre-natural irán de 5 a 8. Mirar tabla adjunta:
+
+Se crea una nueva consulta donde se relacionan los valores de rango de uso de cobertura con los valores de los códigos y después con valores de la tabla principal
+
+Esta consulta se llama naturalización y aparecen campos con los valores de la naturalización y descripciones del estado del polígono tanto en el año 1956 como 2003
+
 El gradiente de valores va entre 0 y 10. 
 
-Posteriormente se hace la resta de los campos entre 2003 y 1956. como nuestro objetivo es ver la naturalizaci�n de la zona los valores m�s positivos son los que corresponden a un mejor estado de conservaci�n. 
-Para conseguir que los valores m�s positivos sean los m�s naturalizados la resta consiste en 2003-1956.
+Posteriormente se realiza la resta de los campos entre 2003 y 1956. Como el fin de este estudio es ver la naturalización de la zona, los valores más positivos son los que corresponden a un mejor estado de conservación del área. Para conseguir que los valores más positivos sean los más naturalizados se ha de realizar la resta en el siguiente orden: los campos de 2003 menos los campos de 1956.
 
-A continuaci�n se exporta las base de datos en formato txt, el cual cambiaremos a csv despu�s de hacer algunos cambios. Estos cambios se efectuan para no tener problemas en el qgis.
-Primero, quitaremos los decimales,cambiamos los , (comas) que aparecen en la descripci�n por y (la letra y ) y por �ltimo los separadores de campo se convertiran en ,(coma)( para no tener problemas a la hora de cambiar los comas de la descrici�n primero hemos convertido estas en asteriscos).
-Adem�s, se cambia el formato de campo en funci�n de texto o n�mero usando otro documento csvt donde hemos definido el tipo de cada campo. 
+En la figura 1 aparece una franja blanca que está relacionada con la falta de datos de 1956. Como estos datos no aparecían en la base de datos con la que se ha trabajado se ha procedido a eliminarlos.
 
-En QGIS importamos la capa de Usos de Sierra Nevada. A continuaci�n cargamos el fichero csv con los cambios entre 1956 y 2003. Para visualizar ambas capas a la vez, realizamos una uni�n entre ambas y guardamos esta capa para hacer factibles los cambios. 
-A continuaci�n, cambiamos el estilo a graduado, escogiendo una rampa de color en el que se puedan apreciar los cambios. Seleccionamos rupturas naturales y una rampa de 10 clases. Una vez tengamos estos cambios realizados, guardamos la capa para trabajar con esta.
-Posteriormente realizamos una consulta espacial para poder ver los pol�gonos que han sufrido mayor grado de naturalizaci�n. 
-La consulta se realizar� con la siguiente f�rmula: "Shape_Area" > 100000 AND "d_03_56__4"  >= 5. 
+A continuación se exporta la base de datos en formato txt, el cual cambiaremos a csv después de realizar una serie de cambios, que a continuación se detallan, para no tener dificultades a la hora de exportar este csv a QGIS.
 
-Esto quiere decir que mostrar� los pol�gonos mayores de 100000m2 = 10 Ha debido a la escala de clasificacion que hemos usado con el rango 0-8 de mas antropico a naturalizado elegimos los poligonos en los que el cambio ha sido igual o mayor a 5 y de esta forma nos aseguramos que han sufrido cambio de antropico a naturalizado.
-Debido a la resta que hemos hecho los valores m�s negativos representan la antropizaci�n mientras que los valores m�s positivos muestran la naturalizaci�n que ha sufrido el poligono. Graficamente esto se visualiza con los colores m�s rojos antro y verde naturalizaci�n.
-En la imagen aparece una franja blanca que est� relaciada con la falta de datos de 1956. Como no hab�a estos datos en el access hemos decidido quitar estos poligonos. 
+-	Primero se procede a quitar los decimales. Para ello se cambian las “,” que aparecen en el campo descripción por la letra “y”.
+-	A continuación cambiamos las “,” por “*” para no tener problemas en poner que los separadores de campo sean “,”.
+-	Después se convierten los separadores de campo en “,”.
+
+Además, se cambia el formato de campo en función de: texto o número. Para ello se hace una copia de este csv y se le añade la extensión “csvt”, donde después se define si el campo es número o texto.
+
+Tras obtener el csv  de cambios entre 1956 y 2003 con los datos correctamente expresados se pasa a realizar el mapa de cambios de uso de suelo en QGIS.
+
+En QGIS se importa la capa de Usos de Sierra Nevada  y alrededores que se nos ha proporcionado. A continuación se importa el fichero csv con los cambios entre 1956 y 2003. Para visualizar ambas capas a la vez, realizamos una unión entre ellas y guardamos esta capa para hacer factibles los cambios, este archivos se guarda con extensión “.shp”. 
+
+A continuación, se procede a realizar una serie de cambios de estilos para poder visualizar correctamente los cambios. Se elige el estilo a graduado, escogiendo una rampa de color en el que se puedan apreciar los cambios de manera clara. Se seleccionan el modo de rupturas naturales y una rampa de 10 clases. Una vez se realizan estos cambios, se guarda la capa para trabajar con ella directamente.
+
+Posteriormente se realiza una consulta espacial para poder ver los polígonos que han sufrido mayor grado de naturalización. La consulta se realizará con la siguiente fórmula: "Shape_Area" > 100000 AND "d_03_56__4"  >= 5. 
+
+Esto quiere decir que se mostrarán los polígonos mayores de 100000m2 (10 Ha), debido a que la escala de clasificación que se ha usado ha sido con el rango de 0-8, realizando un cambio uso de lo más antrópico a lo más naturalizado. Se seleccionan los polígonos en los que el cambio ha sido igual o mayor a 5, de esta forma se asegura que estos son los que han sufrido cambio de antrópico a naturalizado.
+
+Debido a la resta que se ha realizado, los valores más negativos representan la antropización mientras que los valores más positivos muestran la naturalización que ha sufrido el polígono que representa dicha área en el terreno. Gráficamente se puede visualizar a simple vista, los polígonos en tonos rojizos son aquellos con un uso más antrópico, mientras que los polígonos con tonos verdes son aquellos que son más naturales (fig 1).
+
+Por último, se realiza una capa de centroides que muestra los polígonos que la consulta ha marcado. Convertimos la capa de puntos resultante a un sistema de coordenadas válido (WGS84) para GEE (Google Earth Engine). En el mismo paso generamos un archivo con formato KML que es importable por GEE. Esta capa será la que se utilizará para trabajar en.
+ 
+Para obtener los datos NDVI (Índice de vegetación de diferencia normalizada que estima la cantidad, calidad y desarrollo de la vegetación con base a la medición, por medio de sensores remotos de la intensidad de la radiación de ciertas bandas del espectro electromagnético que la vegetación emite o refleja) y a partir de estos datos ver la tendencia de los cambios de producción en el tiempo usaremos GEE.
+
+El primer paso: convertir el archivo KML,anteriormente mencionado, mediante la función "fusion table" en una tabla para importar datos vectoriales en GEE. Seleccionamos la colección Landsat 5 TM Annual NDVI Composite que comprende datos desde 1984-2013. Elegimos esta colección porque es la que abarca un período de tiempo que mejor se ajusta a nuestro proyecto (1953-2003) con respecto a las demás colecciones.
+
+Cabe mencionar que hicimos una primera extracción de valores de NDVI y observamos en el visor de GEE que existían puntos situados fuera de nuestra área de estudio. Por lo que procedimos a eliminarlos del archivo csv de puntos. Y con ello poder obtener la tendencia de cambio de la producción vegetal en Sierra Nevada y Sierra de Baza.
+
+script usada en el GEE:
+
+// Seleccionamos y creamos la colección:
+var collection = ee.ImageCollection('LANDSAT/LT5_L1T_ANNUAL_NDVI').select('NDVI').filterDate('1984-01-01','2003-12-31').mean();
+
+// FeatureCollection a partir de los puntos que, previamente, hemos cargado en una Fusion Table de Google
+var puntos = ee.FeatureCollection('ft:1GEsQd5q7buh0A_mOqtK9X6eNjX2lZcjUkDqgXy8z');
 
 
-Para acabar con qgis se hace una capa de centroides que muestra el centro de los poligonos y posteriormente esto se usar� para cargar en google earth engine. 
+// Creamos una nueva variable aplicando la función reductor "mean" a los puntos que hemos cargado, a partir de la colección seleccionada.Así seleccionamos los valores medio de NDVI de cada punto. 
+var extract = collection.reduceRegions({
+  reducer: ee.Reducer.mean(),
+  collection: puntos,
+  scale: 30
+});
 
 
+// Para visualizar los puntos en el visor de GEE aplicamos la siguiente función:  
+Map.addLayer(puntos);
+
+// Exportamos los valores medios de NDVI a Google Drive
+Export.table.toDrive({
+  collection: extract,
+  description: 'prueba_corr',
+  fileFormat: 'CSV',
+});
+
+// Una vez extraídos los valores medios de NDVI, con la siguiente función obtenemos una gráfica de serie temporal que nos mostrará la tendencia de los valores de NDVI a lo largo de periodo de estudio que nos ha permitido el producto Landsat 5 TM Annual NDVI Composite (1984-2013).
+
+var collection = ee.ImageCollection('LANDSAT/LT5_L1T_ANNUAL_NDVI').select('NDVI').filterDate('1984-01-01','2003-12-31');
+// Create and print the chart.
+print(ui.Chart.image.series(collection, puntos, ee.Reducer.mean(), 30));
+
+Los resultados que obtenemos después de hacer esta función está representado por la figura 2. Esta gráfica de serie temporal (fig 2) muestra que el NDVI oscila entre los valores 0.1 y 0.34. Se observa un incremento de éstos valores a partir del año 1989, coincidiendo con la declaración de ambas sierras como Parques Naturales. Durante los siguientes años se produjo un leve descenso hasta aproximadamente el año 1997 que de nuevo los valores aumentan hasta alcanzar un valor máximo aproximadamente en 2001. Este hecho se podría relacionar con la declaración del Parque Nacional de Sierra Nevada (1999).
+
+Por último calculamos la capacidad de secuestro de carbono que tendría nuestro área de estudio, para ello usamos INVEST, el cual nos proporciona un mapa de posibles zonas capaces de secuestrar carbono (fig 3). Como se puede ver en la figura 3  podemos considerar que tanto el Espacio Naturales Protegido  de Sierra Nevada como el Parque Natural de Sierra de Baza son buenos lugares de reservorio de carbono. 
